@@ -6,12 +6,12 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 
 一、方案标题
 --
-    *宠物喂食器
+    宠物喂食器
 
 二、方案应用场景
 --
-   #地点：家庭、宠物医院、宠物店；
-   #功能：
+   地点：家庭、宠物医院、宠物店；
+   功能：
        1、按键手动投放指定量食物及水
        2、记录宠物每次吃过之后剩余量
        3、根据喂食计划定时补充到设定量的食物及水
