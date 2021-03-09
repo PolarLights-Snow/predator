@@ -11,7 +11,7 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
     宠物喂食器
 
 二、方案应用场景
-----
+-----
 * 地点：
         家庭、宠物医院、宠物店
 * 功能：
