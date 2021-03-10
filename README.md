@@ -8,7 +8,7 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 
 一、方案标题
 ----
-    宠物喂食器
+    宠物投喂器
 
 二、方案应用场景
 -----
@@ -19,13 +19,13 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 *   2、记录宠物每次吃过之后剩余量
 *   3、根据喂食计划定时补充到设定量的食物及水
 *   4、可以通过摄像头远程查看投喂器具体情况，及时对异常进行处理
-*   5、远程补充食物及水（网页控制）
+*   5、远程补充食物及水
 *   6、根据每次的剩余量及当前宠物的合理喂食量，智能调整喂食计划
 *   7、通过语音识别主人命令进行投喂
 *   8、通过网页可以查看、调整喂食计划
 *   9、通过传感器采集宠物每次吃食的时间及量            
 三、开发计划
-----
+------
 *   4月1前完成.
 *   1）3月8前准备物料
 *   2）3月10-25日嵌入式开发、云开发
@@ -39,4 +39,5 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 *   6、直流电机
 *   7、步进电机
 *   8、外壳以纸箱为主题进行DIY
+
     
