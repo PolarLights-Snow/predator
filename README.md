@@ -13,7 +13,7 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 功能：
 ----
 
-* 1、手动投放食物
+## 1、手动投放食物
 *  当饭盆中食物不足时可以通过按键手动来添加
 * 2、记录宠物每次吃过之后剩余量
 * 3、根据喂食计划定时补充到设定量的食物
