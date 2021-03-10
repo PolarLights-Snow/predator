@@ -2,7 +2,7 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 ----
 一、方案标题
 ====
-宠物投喂器开发计划
+宠物投喂器
 ----
 二、方案应用场景
 ====
