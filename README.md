@@ -34,7 +34,7 @@ This project is developed using Tuya SDK, which enables you to quickly develop b
 *   1）3月8前准备物料
 *   2）3月10-25日嵌入式开发、云开发
 *   3）4月1日前整体调试。
-   # 传感器及核心板选购： 
+   ## 传感器及核心板选购： 
 *   1、esp8266 wifi通讯模块
 *   2、三明治开发套件（语音开发板、电源、电机驱动）
 *   3、称重模块
