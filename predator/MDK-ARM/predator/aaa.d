@@ -1,0 +1,9 @@
+predator\aaa.o: ..\HX711\aaa.c
+predator\aaa.o: C:\Users\14401\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\stm32f10x.h
+predator\aaa.o: .\RTE\_predator\RTE_Components.h
+predator\aaa.o: ../Drivers/CMSIS/Include/core_cm3.h
+predator\aaa.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdint.h
+predator\aaa.o: ../Drivers/CMSIS/Include/cmsis_version.h
+predator\aaa.o: ../Drivers/CMSIS/Include/cmsis_compiler.h
+predator\aaa.o: ../Drivers/CMSIS/Include/cmsis_armcc.h
+predator\aaa.o: C:\Users\14401\AppData\Local\Arm\Packs\Keil\STM32F1xx_DFP\2.3.0\Device\Include\system_stm32f10x.h
