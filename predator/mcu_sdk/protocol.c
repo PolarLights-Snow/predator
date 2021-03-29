@@ -34,11 +34,13 @@
 #include "gpio.h"
 #include "stdio.h"
 #include "main.h"
+#include "rtc.h"
 #include "CMSIS_ARMCC.H"
  unsigned char Flag_ZD_KG;				//自动喂食开关状态标志位
  unsigned char Flag_WS_ZT;				//喂食状态
  unsigned long Flag_YL_LT;				//粮桶余量
  unsigned long Flag_YL_SW;				//余量
+ extern int Weight_Maopi;
 #ifdef WEATHER_ENABLE
 /**
  * @var    weather_choose
@@ -264,9 +266,9 @@ static unsigned char dp_download_manual_feed_handle(const unsigned char value[],
 				for(int i=0;i< manual_feed;i++)
 				{
 					mcu_dp_enum_update(DPID_FEED_STATE,1); //当前喂食状态  枚举型数据上报;		0:准备     1：喂食			2：完成
-					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
-					HAL_Delay(300);
 					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
+					HAL_Delay(300);
+					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
 					HAL_Delay(300);
 				}
 				mcu_dp_enum_update(DPID_FEED_STATE,2); //当前喂食状态  枚举型数据上报;		0:准备     1：喂食			2：完成
@@ -357,6 +359,13 @@ static unsigned char dp_download_switch_handle(const unsigned char value[], unsi
         //开关关
     }else {
         //开关开
+			mcu_dp_enum_update(DPID_FEED_STATE,1); //当前喂食状态  枚举型数据上报;		0:准备     1：喂食			2：完成
+					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
+					HAL_Delay(300);
+					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
+					mcu_dp_value_update(DPID_MANUAL_FEED,1);
+			mcu_dp_enum_update(DPID_FEED_STATE,2); //当前喂食状态  枚举型数据上报;		0:准备     1：喂食			2：完成
+			
     }
   
     //处理完DP数据后应有反馈
@@ -493,7 +502,7 @@ unsigned char mcu_firm_update_handle(const unsigned char value[],unsigned long p
  */
 void mcu_get_greentime(unsigned char time[])
 {
-    #error "请自行完成相关代码,并删除该行"
+ //   #error "请自行完成相关代码,并删除该行"
     /*
     time[0] 为是否获取时间成功标志，为 0 表示失败，为 1表示成功
     time[1] 为年份，0x00 表示 2000 年
@@ -505,7 +514,7 @@ void mcu_get_greentime(unsigned char time[])
     */
     if(time[0] == 1) {
         //正确接收到wifi模块返回的格林数据
-        
+        printf("aaaaaaaaa");
     }else {
         //获取格林时间出错,有可能是当前wifi模块未联网
     }
@@ -521,7 +530,7 @@ void mcu_get_greentime(unsigned char time[])
  */
 void mcu_write_rtctime(unsigned char time[])
 {
-    #error "请自行完成RTC时钟写入代码,并删除该行"
+//    #error "请自行完成RTC时钟写入代码,并删除该行"
     /*
     Time[0] 为是否获取时间成功标志，为 0 表示失败，为 1表示成功
     Time[1] 为年份，0x00 表示 2000 年
@@ -534,7 +543,9 @@ void mcu_write_rtctime(unsigned char time[])
    */
     if(time[0] == 1) {
         //正确接收到wifi模块返回的本地时钟数据
-     
+//     MX_RTC_Init(time[1],time[2],time[3],time[4],time[5],time[6],time[7]);
+			
+			printf("20%02d-%02d-%02d  %02d:%02d:%02d  (Week%d)  \t\n",time[1],time[2],time[3],time[4],time[5],time[6],time[7]);
     }else {
         //获取本地时钟数据出错,有可能是当前wifi模块未联网
     }

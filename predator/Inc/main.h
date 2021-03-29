@@ -36,7 +36,7 @@ extern "C" {
 #include "mcu_api.h"
 #include "protocol.h"
 #include "usart.h"
-
+#include "HX711.h"
 /* USER CODE END Includes */
 
 /* Exported types ------------------------------------------------------------*/
@@ -46,7 +46,10 @@ extern "C" {
 
 /* Exported constants --------------------------------------------------------*/
 /* USER CODE BEGIN EC */
-
+void ws(char p);
+extern RTC_HandleTypeDef hrtc;
+extern RTC_DateTypeDef DateToUpdate;
+extern RTC_TimeTypeDef sTime;
 /* USER CODE END EC */
 
 /* Exported macro ------------------------------------------------------------*/

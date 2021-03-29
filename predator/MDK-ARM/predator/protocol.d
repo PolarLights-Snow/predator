@@ -32,8 +32,13 @@ predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h
+predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h
 predator\protocol.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 predator\protocol.o: ../Inc/usart.h
 predator\protocol.o: ../Inc/main.h
 predator\protocol.o: ../Inc/usart.h
+predator\protocol.o: ..\HX711\HX711.h
+predator\protocol.o: ../Inc/main.h
 predator\protocol.o: ../Inc/gpio.h
+predator\protocol.o: ../Inc/rtc.h

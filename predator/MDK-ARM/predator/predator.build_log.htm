@@ -22,41 +22,29 @@ Dialog DLL:      TCM.DLL V1.46.0.0
  
 <h2>Project:</h2>
 E:\GitHub\predator\predator\MDK-ARM\predator.uvprojx
-Project File Date:  03/26/2021
+Project File Date:  03/29/2021
 
 <h2>Output:</h2>
 *** Using Compiler 'V5.06 update 6 (build 750)', folder: 'C:\Keil_v5\ARM\ARMCC\Bin'
 Build target 'predator'
-compiling HX711.c...
-..\HX711\HX711.c(41): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_DOUT_GPIO_Port,HX711_DOUT_Pin,0);
-..\HX711\HX711.c(42): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,0);
-..\HX711\HX711.c(55): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_DOUT_GPIO_Port,HX711_DOUT_Pin,1);
-..\HX711\HX711.c(58): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,0);
-..\HX711\HX711.c(64): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,1);
-..\HX711\HX711.c(68): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,0);
-..\HX711\HX711.c(70): warning:  #188-D: enumerated type mixed with another type
-  		HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
-..\HX711\HX711.c(76): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,1);
-..\HX711\HX711.c(80): warning:  #188-D: enumerated type mixed with another type
-  	HAL_GPIO_WritePin(HX711_SCK_GPIO_Port,HX711_SCK_Pin,0);	
-..\HX711\HX711.c: 9 warnings, 0 errors
-compiling main.c...
-../Src/main.c(111): warning:  #188-D: enumerated type mixed with another type
-  					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
-../Src/main.c(113): warning:  #188-D: enumerated type mixed with another type
+compiling protocol.c...
+..\mcu_sdk\protocol.c(269): warning:  #188-D: enumerated type mixed with another type
   					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
-../Src/main.c: 2 warnings, 0 errors
+..\mcu_sdk\protocol.c(271): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
+..\mcu_sdk\protocol.c(363): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
+..\mcu_sdk\protocol.c(365): warning:  #188-D: enumerated type mixed with another type
+  					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
+..\mcu_sdk\protocol.c(1265): warning:  #550-D: variable "play"  was set but never used
+      unsigned char play;
+..\mcu_sdk\protocol.c(1266): warning:  #550-D: variable "bt_play"  was set but never used
+      unsigned char bt_play;
+..\mcu_sdk\protocol.c: 6 warnings, 0 errors
 linking...
-Program Size: Code=9824 RO-data=320 RW-data=68 ZI-data=1316  
+Program Size: Code=9444 RO-data=320 RW-data=56 ZI-data=1312  
 FromELF: creating hex file...
-"predator\predator.axf" - 0 Error(s), 11 Warning(s).
+"predator\predator.axf" - 0 Error(s), 6 Warning(s).
 
 <h2>Software Packages used:</h2>
 
@@ -79,7 +67,7 @@ Package Vendor: Keil
 <h2>Collection of Component Files used:</h2>
 
    * Component: ARM::CMSIS:CORE:5.4.0
-Build Time Elapsed:  00:00:03
+Build Time Elapsed:  00:00:02
 </pre>
 </body>
 </html>

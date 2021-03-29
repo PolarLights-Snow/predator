@@ -20,6 +20,7 @@
 /* Includes ------------------------------------------------------------------*/
 #include "main.h"
 #include "adc.h"
+#include "rtc.h"
 #include "usart.h"
 #include "gpio.h"
 
@@ -56,7 +57,29 @@ int YY_YL=5;			//定义语音音量
 
 /* Private function prototypes -----------------------------------------------*/
 void SystemClock_Config(void);
+/* USER CODE BEGIN PFP */
 
+/* USER CODE END PFP */
+
+/* Private user code ---------------------------------------------------------*/
+/* USER CODE BEGIN 0 */
+
+/*	LED:PA1
+		KEY:PC13
+		
+		UART1:与soc通讯				RX:PA10	TX:PA9
+		UART2:debug						RX:PA3	TX:PA2
+*/
+#ifdef __GUNC_				//转移串口   打印
+#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
+#else
+#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)
+#endif		/* __GUNC_ */
+
+PUTCHAR_PROTOTYPE {
+		HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xffff);
+		return ch;
+}
 void key_xz()
 {
 	if (HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin)==1)					//WiFi配网
@@ -69,12 +92,15 @@ void key_xz()
 				while(HAL_GPIO_ReadPin(KEY_GPIO_Port, KEY_Pin)==1);
 			}
 		}
-		if (HAL_GPIO_ReadPin(YY_JY_GPIO_Port, YY_JY_Pin)==1)			//mic静音
+		if (HAL_GPIO_ReadPin(YY_JY_GPIO_Port, YY_JY_Pin)==1)			//
 		{
-			printf("YY_JY");
+			printf("YY_JY  \r\n");
 			HAL_Delay(9);
 			if (HAL_GPIO_ReadPin(YY_JY_GPIO_Port, YY_JY_Pin)==1)
 			{
+				mcu_get_system_time();
+
+
 				while(HAL_GPIO_ReadPin(YY_JY_GPIO_Port, YY_JY_Pin)==1);
 			}
 		}
@@ -108,9 +134,9 @@ void key_xz()
 			{
 					
 				mcu_dp_enum_update(DPID_FEED_STATE,1); //当前喂食状态  枚举型数据上报;		0:准备     1：喂食			2：完成
-					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
-					HAL_Delay(300);
 					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,1);
+					HAL_Delay(300);
+					HAL_GPIO_WritePin(DJ_GPIO_Port,DJ_Pin,0);
 					mcu_dp_value_update(DPID_MANUAL_FEED,1);
 				while(HAL_GPIO_ReadPin(WS_GPIO_Port, WS_Pin)==1);
 			}
@@ -118,30 +144,6 @@ void key_xz()
 		}
 
 }
-/* USER CODE BEGIN PFP */
-
-/* USER CODE END PFP */
-
-/* Private user code ---------------------------------------------------------*/
-/* USER CODE BEGIN 0 */
-
-/*	LED:PA1
-		KEY:PC13
-		
-		UART1:与soc通讯				RX:PA10	TX:PA9
-		UART2:debug						RX:PA3	TX:PA2
-*/
-#ifdef __GUNC_				//转移串口   打印
-#define PUTCHAR_PROTOTYPE int __io_putchar(int ch)
-#else
-#define PUTCHAR_PROTOTYPE int fputc(int ch,FILE *f)
-#endif		/* __GUNC_ */
-
-PUTCHAR_PROTOTYPE {
-		HAL_UART_Transmit(&huart2, (uint8_t*)&ch, 1, 0xffff);
-		return ch;
-}
-
 /* USER CODE END 0 */
 
 /**
@@ -165,7 +167,7 @@ int main(void)
 
   /* Configure the system clock */
   SystemClock_Config();
-
+	mcu_get_green_time();				//获取格林时间
   /* USER CODE BEGIN SysInit */
 
   /* USER CODE END SysInit */
@@ -175,6 +177,7 @@ int main(void)
   MX_USART1_UART_Init();
   MX_USART2_UART_Init();
   MX_ADC1_Init();
+  printf("hello" ); //打印 
   /* USER CODE BEGIN 2 */
 	
 	__HAL_UART_ENABLE_IT(&huart1,UART_IT_RXNE);
@@ -193,17 +196,8 @@ int main(void)
 		wifi_uart_service();		//wifi串口数据处理服务
 		
 		key_xz();				//按键选择    
-		if(Flag_YL_SW !=get_HX711data())
-		{
-			Flag_YL_SW = get_HX711data();
-			mcu_dp_value_update(DPID_SURPLUS_GRAIN,Flag_YL_SW); //当前食物  VALUE型数据上报;
-		
-		}			
-		
 		
 		get_wifi_status(mcu_get_wifi_work_state());
-		
-
     /* USER CODE END WHILE */
 
     /* USER CODE BEGIN 3 */
@@ -224,9 +218,10 @@ void SystemClock_Config(void)
   /** Initializes the RCC Oscillators according to the specified parameters
   * in the RCC_OscInitTypeDef structure.
   */
-  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI;
+  RCC_OscInitStruct.OscillatorType = RCC_OSCILLATORTYPE_HSI|RCC_OSCILLATORTYPE_LSI;
   RCC_OscInitStruct.HSIState = RCC_HSI_ON;
   RCC_OscInitStruct.HSICalibrationValue = RCC_HSICALIBRATION_DEFAULT;
+  RCC_OscInitStruct.LSIState = RCC_LSI_ON;
   RCC_OscInitStruct.PLL.PLLState = RCC_PLL_NONE;
   if (HAL_RCC_OscConfig(&RCC_OscInitStruct) != HAL_OK)
   {
@@ -245,7 +240,8 @@ void SystemClock_Config(void)
   {
     Error_Handler();
   }
-  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_ADC;
+  PeriphClkInit.PeriphClockSelection = RCC_PERIPHCLK_RTC|RCC_PERIPHCLK_ADC;
+  PeriphClkInit.RTCClockSelection = RCC_RTCCLKSOURCE_LSI;
   PeriphClkInit.AdcClockSelection = RCC_ADCPCLK2_DIV2;
   if (HAL_RCCEx_PeriphCLKConfig(&PeriphClkInit) != HAL_OK)
   {

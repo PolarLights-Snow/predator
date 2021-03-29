@@ -3,6 +3,7 @@
 "predator\main.o"
 "predator\gpio.o"
 "predator\adc.o"
+"predator\rtc.o"
 "predator\usart.o"
 "predator\stm32f1xx_it.o"
 "predator\stm32f1xx_hal_msp.o"
@@ -19,6 +20,8 @@
 "predator\stm32f1xx_hal_flash.o"
 "predator\stm32f1xx_hal_flash_ex.o"
 "predator\stm32f1xx_hal_exti.o"
+"predator\stm32f1xx_hal_rtc.o"
+"predator\stm32f1xx_hal_rtc_ex.o"
 "predator\stm32f1xx_hal_tim.o"
 "predator\stm32f1xx_hal_tim_ex.o"
 "predator\stm32f1xx_hal_uart.o"
@@ -26,7 +29,6 @@
 "predator\mcu_api.o"
 "predator\protocol.o"
 "predator\system.o"
-"predator\hx711.o"
 --library_type=microlib --strict --scatter "predator\predator.sct"
 --summary_stderr --info summarysizes --map --load_addr_map_info --xref --callgraph --symbols
 --info sizes --info totals --info unused --info veneers

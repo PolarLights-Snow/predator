@@ -27,12 +27,15 @@ predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_adc_ex.h
 predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash.h
 predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_flash_ex.h
 predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_pwr.h
+predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc.h
+predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_rtc_ex.h
 predator\main.o: ../Drivers/STM32F1xx_HAL_Driver/Inc/stm32f1xx_hal_uart.h
 predator\main.o: C:\Keil_v5\ARM\ARMCC\Bin\..\include\stdio.h
 predator\main.o: ..\mcu_sdk\mcu_api.h
 predator\main.o: ..\mcu_sdk\protocol.h
 predator\main.o: ../Inc/usart.h
 predator\main.o: ../Inc/main.h
-predator\main.o: ../Inc/adc.h
-predator\main.o: ../Inc/gpio.h
 predator\main.o: ..\HX711\HX711.h
+predator\main.o: ../Inc/adc.h
+predator\main.o: ../Inc/rtc.h
+predator\main.o: ../Inc/gpio.h
